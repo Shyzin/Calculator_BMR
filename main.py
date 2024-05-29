@@ -19,17 +19,17 @@ def main(page: ft.Page):
             tmb = float(f'{tmb: 2f}')
 
             #Exibir valor do TMB
-            TMB.value = f'Seu TMB e {tmb}'
+            TMB.value = f'Your BMR is {tmb}'
             img_resultado.src = f'1.png'
 
-            if genero.value == 'Feminino':
+            if genero.value == 'Woman':
                 tmb = 665 + (9.6 * valor_peso) + (1.8 * valor_altura) - (4.7 * valor_idade)
                 tmb = float(f'{tmb: 2f}')
 
-                TMB.value = f'Seu TMB e {tmb}'
+                TMB.value = f'Your BMR is... {tmb}'
                 
                 img_resultado.src = f'1.png'
-                detalhes.value = 'fique de boa'
+                detalhes.value = ' dont worry'
 
         #Lipar campos
         idade.value = ''
@@ -47,7 +47,7 @@ def main(page: ft.Page):
     page.appbar = ft.AppBar(
         leading = ft.Icon(ft.icons.MULTILINE_CHART),
         leading_width = 40,
-        title = ft.Text('Calculadora TMB'),
+        title = ft.Text('Calculator BMR'),
         center_title = False,
         bgcolor = ft.colors.SURFACE_VARIANT
 
@@ -60,30 +60,30 @@ def main(page: ft.Page):
     page.banner = ft.Banner(
         bgcolor = ft.colors.AMBER_100,
         leading = ft.Icon(ft.icons.WARNING_AMBER_ROUNDED, color=ft.colors.AMBER, size=40),
-        content = ft.Text('Ops, preencha todos os campos'),
+        content = ft.Text('Oops, fill in all the fields'),
         actions = [
             ft.TextButton('OK', on_click = close_banner),
         ],
     )
 
-    idade = ft.TextField(label='Idade', hint_text= 'insira sua idade')
-    altura = ft.TextField(label='Altura', hint_text= 'insira sua altura')
-    peso = ft.TextField(label='Peso', hint_text= 'insira seu peso')
+    idade = ft.TextField(label='Age', hint_text= 'enter your age')
+    altura = ft.TextField(label='Height', hint_text= 'enter your height')
+    peso = ft.TextField(label='Weight', hint_text= 'enter your weight')
     genero = ft.Dropdown(
-        label = 'Genero',
-        hint_text = 'Qual o seu Genero',
+        label = 'Gender',
+        hint_text = 'What is your Gender?',
         options=[
-            ft.dropdown.Option('Masculino'),
-            ft.dropdown.Option('Feminino'),
+            ft.dropdown.Option('Man'),
+            ft.dropdown.Option('Woman'),
 
         ]
     )
 
-    b_calcular = ft.ElevatedButton(text='Calcular TMB', on_click=calcular)
+    b_calcular = ft.ElevatedButton(text='Calculate BMR', on_click=calcular)
 
     #Exibir o TMB e Resultado
-    TMB = ft.Text('Seu TMB e ...', size=30)
-    detalhes = ft.Text('Insira seus dados', size=20)
+    TMB = ft.Text('Your BMR is ...', size=30)
+    detalhes = ft.Text('Enter your details', size=20)
 
     img_capa = ft.Image(
         src=f'icon.png',
